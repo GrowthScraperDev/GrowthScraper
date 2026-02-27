@@ -1,4 +1,6 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
+import SwiperSlider from "./components/SwiperSlide";
+import ScrollerComp from "./components/ScrollerComp";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -23,3 +25,30 @@ export const PLASMIC = initPlasmicLoader({
 // https://docs.plasmic.app/learn/app-hosting/#set-a-plasmic-project-to-use-your-app-host
 
 // PLASMIC.registerComponent(...);
+
+PLASMIC.registerComponent(SwiperSlider, {
+  name: 'SwiperSlider',
+  props: {
+    children: 'slot',
+    pagination: 'boolean',
+    centeredSlides: 'boolean',
+    autoplay: 'boolean',
+    mobileSlides: 'number',
+    tabletSlides:'number',
+    desktopSlides: 'number',
+    marquee: 'boolean',
+    paginationPosition:'string',
+    paginationBg:'string',
+    noloop:'boolean',
+    spaceBetween:'number'
+  },
+});
+
+PLASMIC.registerComponent(ScrollerComp, {
+  name: 'ScrollerComp',
+  props: {
+    children: 'slot',
+    speed: 'number',
+    style: 'object',
+  },
+});

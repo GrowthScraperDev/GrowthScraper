@@ -7,7 +7,7 @@ function SwiperSlider({
   children,
   centeredSlides,
   autoplay,
-  mobileSlides,noloop=false,
+  mobileSlides,loop,reverseDirection,
   desktopSlides,pagination = true,
   marquee,paginationBg,tabletSlides,spaceBetween,
   paginationPosition = "bottom-left", // ✅ NEW PROP
@@ -63,13 +63,16 @@ useEffect(() => {
         autoplay={
           autoplay
             ? {
-                delay: marquee ? 0 : 2500,
+                delay: 0,
                 disableOnInteraction: false,
+                reverseDirection: reverseDirection,
               }
             : false
         }
-        speed={marquee ? 3000 : 700}
-        loop={noloop ? false:true}
+        speed={marquee ? 5000 : 700}
+        loop={loop}
+        freeMode={true}
+        loopedSlides={children.length}
         breakpoints={{
           0: { slidesPerView: mobileSlides || "auto" },
           800: { slidesPerView: tabletSlides || "auto" },

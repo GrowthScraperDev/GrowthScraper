@@ -1,6 +1,7 @@
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 import SwiperSlider from "./components/SwiperSlide";
 import ScrollerComp from "./components/ScrollerComp";
+import Header from "./components/Header";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -38,8 +39,9 @@ PLASMIC.registerComponent(SwiperSlider, {
     desktopSlides: 'number',
     marquee: 'boolean',
     paginationPosition:'string',
-    paginationBg:'string',
-    noloop:'boolean',
+    paginationBg:'string',    
+    loop:'boolean',
+    reverseDirection:'boolean',
     spaceBetween:'number'
   },
 });
@@ -49,6 +51,12 @@ PLASMIC.registerComponent(ScrollerComp, {
   props: {
     children: 'slot',
     speed: 'number',
-    style: 'object',
+    direction: 'string',
+  },
+});
+
+PLASMIC.registerComponent(Header, {
+  name: 'Header',
+  props: {
   },
 });

@@ -9,20 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
+    "@hookform/resolvers": "^5.2.2",
     "@plasmicapp/loader-nextjs": "^1.0.454",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.563.0",
     "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.5",
-    "@formspree/react": "^3.0.0",
+    "react-hook-form": "^7.71.2",
     "swiper": "^12.1.2",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.563.0"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.24",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
-    "autoprefixer": "^10.4.24",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17"
   }

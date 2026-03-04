@@ -2,6 +2,7 @@ import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 import SwiperSlider from "./components/SwiperSlide";
 import ScrollerComp from "./components/ScrollerComp";
 import Header from "./components/Header";
+import CareerForm from "./components/CareerForm";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -54,6 +55,12 @@ PLASMIC.registerComponent(ScrollerComp, {
     direction: 'string',
   },
 });
+PLASMIC.registerComponent(CareerForm, {
+  name: 'CareerForm',
+  props: {
+  },
+});
+
 
 PLASMIC.registerComponent(Header, {
   name: 'Header',

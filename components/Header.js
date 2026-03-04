@@ -40,7 +40,7 @@ export default function Header() {
             </nav>
 
             <button className="bg-[#084734] text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
-              Let's Collaborate
+              Lets Collaborate
             </button>
           </div>
 
@@ -50,7 +50,7 @@ export default function Header() {
 
             <div className="flex items-center gap-4">
               <button className="bg-[#084734] text-white px-5 py-2 rounded-full text-sm font-medium">
-                Let's Collaborate
+                Lets Collaborate
               </button>
 
               <button onClick={() => setIsOpen(true)}>
@@ -96,7 +96,7 @@ export default function Header() {
         {/* Bottom CTA */}
         {/* <div className="absolute bottom-8 left-6 right-6">
           <button className="w-full bg-[#084734] text-white py-3 rounded-full font-medium">
-            Let's Collaborate
+            Lets Collaborate
           </button>
         </div> */}
       </div>

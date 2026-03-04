@@ -43,7 +43,7 @@ export default function CareerForm() {
           <form onSubmit={handleSubmit(validateCommon)} className="space-y-5">
 
             <Header
-              title="Let's Get to Know You"
+              title="Lets Get to Know You"
               subtitle="Start by sharing a few basic details so we can guide you better."
             />
 
@@ -162,7 +162,7 @@ export default function CareerForm() {
 
             <Header
               title="Time to Build Your Career"
-              subtitle="Your degree is ready, let's build your career next."
+              subtitle="Your degree is ready, lets build your career next."
             />
 
             <Field label="Highest Qualification" error={errors.qualification}>

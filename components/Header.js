@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -22,9 +23,12 @@ export default function Header() {
 
   return (
     <>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <header className="w-full px-[20px] sm:px-[40px] xl:px-[80px]">
         <div className="w-full">
-          
+
           {/* Desktop Header (UNCHANGED) */}
           <div className="hidden lg:flex items-center justify-between bg-white rounded-md py-4">
             <div className="flex items-center gap-2">
@@ -46,7 +50,7 @@ export default function Header() {
 
           {/* Mobile Header (UNCHANGED) */}
           <div className="lg:hidden flex items-center justify-between bg-white rounded-md py-4">
-          <img src="/growth-scraper-logo.svg" alt="logo" className="w-[150px] h-10" />
+            <img src="/growth-scraper-logo.svg" alt="logo" className="w-[150px] h-10" />
 
             <div className="flex items-center gap-4">
               <button className="bg-[#084734] text-white px-5 py-2 rounded-full text-sm font-medium">
@@ -65,17 +69,15 @@ export default function Header() {
 
       {/* Overlay */}
       <div
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Drawer Panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-[320px] bg-white z-50 transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[320px] bg-white z-50 transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Close Button */}
         <div className="flex justify-end p-6">

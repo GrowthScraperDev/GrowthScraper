@@ -2,7 +2,18 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import {
+  qualificationOptions,
+  graduationYears,
+  careerBreakGraduationYears,
+  studyYears,
+  studentGoals,
+  graduateGoals,
+  workingGoals,
+  careerBreakGoals,
+  investmentOptions,
+  salaryRanges,
+} from "@/data/careerFormOptions";
 export default function CareerForm() {
 
   const [step, setStep] = useState("common");
@@ -35,7 +46,7 @@ export default function CareerForm() {
   return (
     <div className="w-full flex justify-center">
 
-      <div className="w-[520px] bg-white rounded-[28px] p-10">
+      <div className="w-[520px] bg-white rounded-[28px] px-0 py-6 lg:p-10">
 
         {/* ---------------- COMMON STEP ---------------- */}
 
@@ -109,44 +120,46 @@ export default function CareerForm() {
             />
 
             <Field label="Which degree are you pursuing?" error={errors.degree}>
-              <select
-                {...register("degree", { required: "Degree required" })}
-                className="input"
-              >
+              <select {...register("degree", { required: "Degree required" })} className="input">
                 <option value="">Select</option>
-                <option>B.Tech</option>
-                <option>BCA</option>
+                {qualificationOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Current year of study" error={errors.studyYear}>
-              <select
-                {...register("studyYear", { required: "Year required" })}
-                className="input"
-              >
+              <select {...register("studyYear", { required: "Year required" })} className="input">
                 <option value="">Select</option>
-                <option>1st Year</option>
-                <option>2nd Year</option>
+                {studyYears.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="What is your main goal?" error={errors.goal}>
-              <select
-                {...register("goal", { required: "Goal required" })}
-                className="input"
-              >
+              <select {...register("goal", { required: "Goal required" })} className="input">
                 <option value="">Select</option>
-                <option>Get placed in a company</option>
+                {studentGoals.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Are you ready to invest?" error={errors.invest}>
-              <select
-                {...register("invest", { required: "Selection required" })}
-                className="input"
-              >
+              <select {...register("invest", { required: "Selection required" })} className="input">
                 <option value="">Select</option>
-                <option>Yes, immediately</option>
+                {investmentOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
@@ -166,42 +179,48 @@ export default function CareerForm() {
             />
 
             <Field label="Highest Qualification" error={errors.qualification}>
-              <select
-                {...register("qualification", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("qualification")} className="input">
                 <option value="">Select</option>
-                <option>B.Tech</option>
+
+                {qualificationOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+
               </select>
             </Field>
 
             <Field label="Year of Graduation" error={errors.graduationYear}>
-              <select
-                {...register("graduationYear", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("graduationYear", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Before 2023</option>
+                {graduationYears.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Main Goal" error={errors.goal}>
-              <select
-                {...register("goal", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("goal", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Get my first job</option>
+                {graduateGoals.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Ready to invest?" error={errors.invest}>
-              <select
-                {...register("invest", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("invest", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Yes, immediately</option>
+                {investmentOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
@@ -228,32 +247,35 @@ export default function CareerForm() {
             </Field>
 
             <Field label="Salary Range" error={errors.salary}>
-              <select
-                {...register("salary", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("salary", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Below ₹2 LPA</option>
+                {salaryRanges.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Main Goal" error={errors.goal}>
-              <select
-                {...register("goal", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("goal", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Earn additional income through freelancing</option>
+                {workingGoals.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Ready to invest?" error={errors.invest}>
-              <select
-                {...register("invest", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("invest", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Yes, immediately</option>
+                {investmentOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
@@ -273,42 +295,46 @@ export default function CareerForm() {
             />
 
             <Field label="Highest Qualification" error={errors.qualification}>
-              <select
-                {...register("qualification", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("qualification", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>B.Tech</option>
+                {qualificationOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="When did you graduate?" error={errors.graduationYear}>
-              <select
-                {...register("graduationYear", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("graduationYear", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>2024</option>
+                {careerBreakGraduationYears.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Main Goal" error={errors.goal}>
-              <select
-                {...register("goal", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("goal", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Restart my career with a fresh skill</option>
+                {careerBreakGoals.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 
             <Field label="Ready to invest?" error={errors.invest}>
-              <select
-                {...register("invest", { required: "Required" })}
-                className="input"
-              >
+              <select {...register("invest", { required: "Required" })} className="input">
                 <option value="">Select</option>
-                <option>Yes, immediately</option>
+                {investmentOptions.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </Field>
 

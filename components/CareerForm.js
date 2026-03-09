@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm as useHookForm } from "react-hook-form";
 import {
   qualificationOptions,
   graduationYears,
@@ -22,8 +22,9 @@ export default function CareerForm() {
     register,
     handleSubmit,
     trigger,
-    formState: { errors }
-  } = useForm();
+    getValues,
+    formState: { errors },
+  } = useHookForm();
 
   /* ---------- STEP VALIDATION ---------- */
 
@@ -37,10 +38,27 @@ export default function CareerForm() {
     if (data.profile === "Working Professional") setStep("working");
     if (data.profile === "Career Break") setStep("careerBreak");
   };
+  const scriptURL =
+  "https://script.google.com/macros/s/AKfycbxkglQcwk8MSlb3-cPOyev2yDTwGl_FDR7bd6QsUxnCNGhXsBG_CfYRZPbbDHwiRzs0gA/exec";
 
-  const submitHandler = (data) => {
-    console.log(data);
-    setStep("success");
+  const submitHandler = async (data) => {
+    try {
+      const formData = new FormData();
+  
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
+  
+      await fetch(scriptURL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+  
+      setStep("success");
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
   return (
@@ -338,7 +356,9 @@ export default function CareerForm() {
               </select>
             </Field>
 
-            <FormButtons back={() => setStep("common")} />
+            <FormButtons
+              back={() => setStep("common")}
+            />
 
           </form>
         )}
@@ -416,7 +436,7 @@ function FormButtons({ back }) {
 
       <button
         type="submit"
-        className="w-full bg-green-900 text-white rounded-full py-3"
+        className="w-full bg-green-900 text-white rounded-full py-3 disabled:opacity-50"
       >
         Submit
       </button>

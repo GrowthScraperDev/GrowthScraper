@@ -39,7 +39,7 @@ export default function CareerForm() {
     if (data.profile === "Career Break") setStep("careerBreak");
   };
   const scriptURL =
-  "https://script.google.com/macros/s/AKfycbxkglQcwk8MSlb3-cPOyev2yDTwGl_FDR7bd6QsUxnCNGhXsBG_CfYRZPbbDHwiRzs0gA/exec";
+  "https://script.google.com/macros/s/AKfycbxSjGowLOrVyjMYkJG57cVuqdc1zCOZfw5O-MWa5xGhUOtxFimJu6Ms2jINsesQfNNFKw/exec";
 
   const submitHandler = async (data) => {
     try {

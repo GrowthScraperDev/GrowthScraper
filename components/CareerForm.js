@@ -14,7 +14,7 @@ import {
   investmentOptions,
   salaryRanges,
 } from "@/data/careerFormOptions";
-export default function CareerForm() {
+export default function CareerForm({ onCloseModal }) {
 
   const [step, setStep] = useState("common");
 
@@ -23,7 +23,7 @@ export default function CareerForm() {
     handleSubmit,
     trigger,
     getValues,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useHookForm();
 
   /* ---------- STEP VALIDATION ---------- */
@@ -39,22 +39,22 @@ export default function CareerForm() {
     if (data.profile === "Career Break") setStep("careerBreak");
   };
   const scriptURL =
-  "https://script.google.com/macros/s/AKfycbxkglQcwk8MSlb3-cPOyev2yDTwGl_FDR7bd6QsUxnCNGhXsBG_CfYRZPbbDHwiRzs0gA/exec";
+    "https://script.google.com/macros/s/AKfycbyGkR3Q8v9jiSB2QG1byYGdDohd_utTvZzbuMRcSOUt7d9EHdj_jzWSRxLMgBDMFQJPEw/exec";
 
   const submitHandler = async (data) => {
     try {
       const formData = new FormData();
-  
+
       Object.keys(data).forEach((key) => {
         formData.append(key, data[key]);
       });
-  
+      formData.append("sheetName", "Enrollment")
       await fetch(scriptURL, {
         method: "POST",
         body: formData,
         mode: "no-cors",
       });
-  
+
       setStep("success");
     } catch (error) {
       console.error("Submission error:", error);
@@ -64,7 +64,20 @@ export default function CareerForm() {
   return (
     <div className="w-full flex justify-center">
 
-      <div className="w-[520px] bg-white rounded-[28px] px-0 py-6 lg:p-10">
+      <div
+        className={`w-[520px] rounded-[28px] px-0 py-6 lg:p-10 ${step === "success"
+          ? "bg-cover bg-center text-white"
+          : "bg-white"
+          }`}
+        style={
+          step === "success"
+            ? {
+              backgroundImage:
+                "url('/Thanks.png')" // your image path
+            }
+            : {}
+        }
+      >
 
         {/* ---------------- COMMON STEP ---------------- */}
 
@@ -122,7 +135,7 @@ export default function CareerForm() {
               </select>
             </Field>
 
-            <button className="primaryBtn">Continue</button>
+            <button className="primaryBtn"><span>Continue</span></button>
 
           </form>
         )}
@@ -181,7 +194,7 @@ export default function CareerForm() {
               </select>
             </Field>
 
-            <FormButtons back={() => setStep("common")} />
+            <FormButtons back={() => setStep("common")}   isSubmitting={isSubmitting}/>
 
           </form>
         )}
@@ -242,7 +255,7 @@ export default function CareerForm() {
               </select>
             </Field>
 
-            <FormButtons back={() => setStep("common")} />
+            <FormButtons back={() => setStep("common")}   isSubmitting={isSubmitting} />
 
           </form>
         )}
@@ -297,7 +310,7 @@ export default function CareerForm() {
               </select>
             </Field>
 
-            <FormButtons back={() => setStep("common")} />
+            <FormButtons back={() => setStep("common")}   isSubmitting={isSubmitting}/>
 
           </form>
         )}
@@ -357,7 +370,7 @@ export default function CareerForm() {
             </Field>
 
             <FormButtons
-              back={() => setStep("common")}
+              back={() => setStep("common")}   isSubmitting={isSubmitting}
             />
 
           </form>
@@ -368,11 +381,15 @@ export default function CareerForm() {
         {step === "success" && (
           <div className="text-center py-6">
 
-            <div className="w-20 h-20 bg-green-300 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
-              ✓
+            <div className="flex justify-center mb-6">
+              <img
+                src="/icon.svg"
+                alt="Success"
+                className="w-20 h-20"
+              />
             </div>
 
-            <h2 className="text-2xl font-semibold">
+            <h2 className="text-2xl font-medium text-[#0C0C0C]">
               Successfully Submitted
             </h2>
 
@@ -381,10 +398,14 @@ export default function CareerForm() {
             </p>
 
             <button
-              onClick={() => setStep("common")}
+              onClick={() => onCloseModal?.()}
+              // onClick={() => setStep("common")}
               className="primaryBtn"
             >
-              Back to Home
+              <span>
+                Back to Home
+              </span>
+
             </button>
 
           </div>
@@ -422,23 +443,23 @@ function Field({ label, children, error }) {
   );
 }
 
-function FormButtons({ back }) {
+function FormButtons({ back ,isSubmitting}) {
   return (
     <div className="flex gap-4 pt-4">
 
       <button
         type="button"
-        onClick={back}
+        onClick={back} disabled={isSubmitting}
         className="w-full border border-gray-300 rounded-full py-3"
       >
-        Back
+        <span className="text-[#084734]">Back</span>
       </button>
 
       <button
-        type="submit"
+        type="submit" disabled={isSubmitting}
         className="w-full bg-green-900 text-white rounded-full py-3 disabled:opacity-50"
       >
-        Submit
+        <span>{isSubmitting ? "Submitting..." : "Submit"}</span>
       </button>
 
     </div>

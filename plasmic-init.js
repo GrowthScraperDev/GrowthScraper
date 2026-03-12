@@ -56,12 +56,16 @@ PLASMIC.registerComponent(ScrollerComp, {
 PLASMIC.registerComponent(CareerForm, {
   name: 'CareerForm',
   props: {
-  },
+    onCloseModal: {
+      type: "eventHandler",
+      argTypes: []
+    }
+  }
 });
 PLASMIC.registerComponent(ContactForm, {
   name: 'ContactForm',
   props: {
-  },
+  }
 });
 
 PLASMIC.registerComponent(Header, {

@@ -27,7 +27,7 @@
 }
 
 .primaryBtn {
-  @apply w-full bg-green-900 text-white rounded-full py-3 mt-2;
+  @apply w-full bg-green-900 rounded-full py-3 mt-2;
 }
 
 @media(min-width:1000px){

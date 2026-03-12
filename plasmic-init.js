@@ -3,6 +3,7 @@ import SwiperSlider from "./components/SwiperSlide";
 import ScrollerComp from "./components/ScrollerComp";
 import Header from "./components/Header";
 import CareerForm from "./components/CareerForm";
+import ContactForm from "./components/ContactForm";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -32,18 +33,15 @@ PLASMIC.registerComponent(SwiperSlider, {
   name: 'SwiperSlider',
   props: {
     children: 'slot',
-    pagination: 'boolean',
-    centeredSlides: 'boolean',
+    centeredSlides: 'boolean',  
     autoplay: 'boolean',
     mobileSlides: 'number',
     tabletSlides:'number',
     desktopSlides: 'number',
-    marquee: 'boolean',
-    paginationPosition:'string',
-    paginationBg:'string',    
-    loop:'boolean',
-    reverseDirection:'boolean',
-    spaceBetween:'number'
+    loop:'boolean',   
+    showPagination:'boolean',
+    spaceBetween:'number',
+    speed:'number'
   },
 });
 
@@ -60,7 +58,11 @@ PLASMIC.registerComponent(CareerForm, {
   props: {
   },
 });
-
+PLASMIC.registerComponent(ContactForm, {
+  name: 'ContactForm',
+  props: {
+  },
+});
 
 PLASMIC.registerComponent(Header, {
   name: 'Header',

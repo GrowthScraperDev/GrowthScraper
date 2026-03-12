@@ -43,8 +43,8 @@ export default function Header() {
               <Link href="#">Contact</Link>
             </nav>
 
-            <button className="bg-[#084734] text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
-              Lets Collaborate
+            <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition btn-transition">
+            <span>Lets Collaborate</span>
             </button>
           </div>
 
@@ -53,8 +53,8 @@ export default function Header() {
             <img src="/growth-scraper-logo.svg" alt="logo" className="w-[150px] h-10" />
 
             <div className="flex items-center gap-4">
-              <button className="bg-[#084734] text-white px-5 py-2 rounded-full text-sm font-medium">
-                Lets Collaborate
+              <button className="bg-[#084734] px-5 py-2 rounded-full text-sm font-medium btn-transition">
+              <span>Lets Collaborate</span>
               </button>
 
               <button onClick={() => setIsOpen(true)}>

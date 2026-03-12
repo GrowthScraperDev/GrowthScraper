@@ -1,83 +1,51 @@
-import React, { useRef, useState, useEffect } from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 
 function SwiperSlider({
   children,
   centeredSlides,
   autoplay,
-  mobileSlides, loop, reverseDirection,
-  desktopSlides, pagination = true,
-  marquee, paginationBg, tabletSlides, spaceBetween,
-  paginationPosition = "bottom-left", // ✅ NEW PROP
+  mobileSlides,
+  loop,
+  desktopSlides,speed,
+  tabletSlides,
+  spaceBetween,
+  showPagination = false
 }) {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    handleResize(); // initial
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(1);
 
-  const bgColor = paginationBg ? paginationBg : "#ffffff";
+  const totalSlides = React.Children.count(children);
 
-  const isRight = paginationPosition === "right" && !isMobile;
+  const formatNumber = (num) => String(num).padStart(2, "0");
 
-  const arrowWrapperStyle = {
-    position: isRight ? "absolute" : "relative",
-    right: isRight ? "0" : "auto",
-    top: isRight ? "-110px" : "auto", // adjust to match gallery UI
-    marginTop: isRight ? "0" : "32px",
-    display: "flex",
-    alignItems: "center",
-    gap: "2px",
-    zIndex: 10,
-    width: "max-content",
-  };
-
-  const arrowButtonStyle = {
-    width: "56px",
-    height: "56px",
-    border: "none",
-    backgroundColor: bgColor,
-    fontSize: "20px",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
   return (
     <div style={{ width: "100%", position: "relative" }}>
+
       <Swiper
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={(swiper) => {
-            setIsBeginning(swiper.isBeginning);
-            setIsEnd(swiper.isEnd);
-          }}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        onSlideChange={(swiper) => {
+          setActiveIndex(swiper.realIndex + 1);
+        }}
         centeredSlides={centeredSlides}
-        modules={[Autoplay]}
+        modules={[Autoplay, EffectFade]}
         autoplay={
           autoplay
             ? {
-              delay: 0,
+              delay: 4000,
               disableOnInteraction: false,
-              reverseDirection: reverseDirection,
             }
             : false
         }
-        speed={marquee ? 5000 : 700}
+        speed={speed}
         loop={loop}
-        freeMode={false}
         resistanceRatio={0}
         breakpoints={{
           0: { slidesPerView: mobileSlides || "auto" },
@@ -87,24 +55,37 @@ function SwiperSlider({
         spaceBetween={spaceBetween}
       >
         {React.Children.map(children, (child, index) => (
-          <SwiperSlide key={index}>{child}</SwiperSlide>
+          <SwiperSlide key={index} style={{position:"relative"}}>{child}</SwiperSlide>
         ))}
       </Swiper>
-      {/* Custom Arrow Pagination */}
-      {pagination && <div style={arrowWrapperStyle}>
-        <button
-          onClick={() => swiperRef.current?.slidePrev()}
-          style={arrowButtonStyle}
+
+      {/* CUSTOM PAGINATION */}
+      {showPagination && (
+        <div
+          className="pagination-desktop"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+            justifyContent: "center",
+            marginTop: "20px",
+            fontSize: "18px",
+            fontWeight: "500",
+          }}
         >
-          ←
-        </button>
-        <button
-          onClick={() => swiperRef.current?.slideNext()}
-          style={arrowButtonStyle}
-        >
-          →
-        </button>
-      </div>}
+          <span>{formatNumber(activeIndex)}</span>
+
+          <div
+            style={{
+              width: "120px",
+              height: "1px",
+              background: "#ccc"
+            }}
+          />
+
+          <span>{formatNumber(totalSlides)}</span>
+        </div>
+      )}
     </div>
   );
 }

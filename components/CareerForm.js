@@ -14,6 +14,7 @@ import {
   investmentOptions,
   salaryRanges,
 } from "@/data/careerFormOptions";
+import { X } from "lucide-react";
 export default function CareerForm({ onCloseModal }) {
 
   const [step, setStep] = useState("common");
@@ -65,7 +66,7 @@ export default function CareerForm({ onCloseModal }) {
     <div className="w-full flex justify-center">
 
       <div
-        className={`w-[520px] rounded-[28px] px-0 py-6 lg:p-10 ${step === "success"
+        className={`w-[550px] rounded-[28px] px-6 py-6 lg:p-10 ${step === "success"
           ? "bg-cover bg-center text-white"
           : "bg-white"
           }`}
@@ -82,11 +83,12 @@ export default function CareerForm({ onCloseModal }) {
         {/* ---------------- COMMON STEP ---------------- */}
 
         {step === "common" && (
-          <form onSubmit={handleSubmit(validateCommon)} className="space-y-5">
+          <form onSubmit={handleSubmit(validateCommon)} className="space-y-4 lg:space-y-5">
 
             <Header
               title="Lets Get to Know You"
               subtitle="Start by sharing a few basic details so we can guide you better."
+              onCloseModal={onCloseModal}
             />
 
             <Field label="Full Name" error={errors.name}>
@@ -143,11 +145,12 @@ export default function CareerForm({ onCloseModal }) {
         {/* ---------------- STUDENT ---------------- */}
 
         {step === "student" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
+          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
 
             <Header
               title="Your Career Starts Here"
               subtitle="Your first smart step toward a strong career."
+              onCloseModal={onCloseModal}
             />
 
             <Field label="Which degree are you pursuing?" error={errors.degree}>
@@ -202,11 +205,12 @@ export default function CareerForm({ onCloseModal }) {
         {/* ---------------- GRADUATE ---------------- */}
 
         {step === "graduate" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
+          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
 
             <Header
               title="Time to Build Your Career"
               subtitle="Your degree is ready, lets build your career next."
+              onCloseModal={onCloseModal}
             />
 
             <Field label="Highest Qualification" error={errors.qualification}>
@@ -263,11 +267,12 @@ export default function CareerForm({ onCloseModal }) {
         {/* ---------------- WORKING ---------------- */}
 
         {step === "working" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
+          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
 
             <Header
               title="Plan Your Next Move"
               subtitle="Your next career leap starts with the right skills."
+              onCloseModal={onCloseModal}
             />
 
             <Field label="Current Role" error={errors.role}>
@@ -318,11 +323,12 @@ export default function CareerForm({ onCloseModal }) {
         {/* ---------------- CAREER BREAK ---------------- */}
 
         {step === "careerBreak" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
+          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
 
             <Header
               title="Restart with Confidence"
               subtitle="Your break was a pause, not a full stop."
+              onCloseModal={onCloseModal}
             />
 
             <Field label="Highest Qualification" error={errors.qualification}>
@@ -418,11 +424,19 @@ export default function CareerForm({ onCloseModal }) {
 
 /* ---------- UI COMPONENTS ---------- */
 
-function Header({ title, subtitle }) {
+function Header({ title, subtitle,onCloseModal }) {
   return (
-    <div>
-      <h2 className="text-[26px] font-semibold mb-1">{title}</h2>
-      <p className="text-sm text-gray-500 mb-6">{subtitle}</p>
+    <div className="relative">
+       {/* Close Button */}
+       <span
+        type="button"
+        onClick={() => onCloseModal?.()}
+        className="absolute right-0 top-0  rounded-full hover:bg-gray-100 transition"
+      >
+        <X size={18} />
+      </span>
+      <h2 className="text-[22px] lg:text-[26px] font-semibold mb-1">{title}</h2>
+      <p className="text-sm text-gray-500">{subtitle}</p>
     </div>
   );
 }
@@ -445,7 +459,7 @@ function Field({ label, children, error }) {
 
 function FormButtons({ back ,isSubmitting}) {
   return (
-    <div className="flex gap-4 pt-4">
+    <div className="flex gap-4">
 
       <button
         type="button"

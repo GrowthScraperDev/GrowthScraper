@@ -36,11 +36,11 @@ export default function Header() {
             </div>
 
             <nav className="flex items-center gap-10 text-gray-600 font-medium">
-              <Link href="#">Solutions</Link>
-              <Link href="#">Academy</Link>
-              <Link href="#">About</Link>
+              <Link href="/solution-hub-page/">Solutions</Link>
+              <Link href="/academy-page/">Academy</Link>
+              <Link href="/about-us/">About</Link>
               <Link href="#">Case Studies</Link>
-              <Link href="#">Contact</Link>
+              <Link href="/contact-us/">Contact</Link>
             </nav>
 
             <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition btn-transition">

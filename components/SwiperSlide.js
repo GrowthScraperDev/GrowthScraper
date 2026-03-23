@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -14,20 +14,39 @@ function SwiperSlider({
   desktopSlides,speed,
   tabletSlides,
   spaceBetween,
-  showPagination = false
+  showPagination = false,
+  goToSlide
 }) {
 
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(1);
-
   const totalSlides = React.Children.count(children);
 
   const formatNumber = (num) => String(num).padStart(2, "0");
-
+  useEffect(() => {
+    // ✅ Do nothing if prop is not passed
+    if (goToSlide === undefined || goToSlide === null) return;
+  
+    // ✅ Ensure swiper is ready
+    if (!swiperRef.current) return;
+  
+    // ✅ Ensure it's a valid number
+    if (typeof goToSlide !== "number") return;
+  
+    // ✅ Prevent unnecessary re-slide
+    if (swiperRef.current.realIndex === goToSlide) return;
+  
+    // ✅ Slide
+    if (loop) {
+      swiperRef.current.slideToLoop(goToSlide - 1);
+    } else {
+      swiperRef.current.slideTo(goToSlide - 1);
+    }
+  }, [goToSlide, loop]);
   return (
     <div style={{ width: "100%", position: "relative" }}>
 
-      <Swiper
+      <Swiper goToSlide={goToSlide}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}

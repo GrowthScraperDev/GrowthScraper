@@ -91,7 +91,7 @@ export default function Header() {
               </div>
 
               <Link href="/about/">About</Link>
-              <Link href="#">Case Studies</Link>
+              {/* <Link href="#">Case Studies</Link> */}
               <Link href="/contact/">Contact</Link>
             </nav>
 
@@ -174,7 +174,7 @@ export default function Header() {
           </div>
 
           <Link href="/about/" onClick={() => setIsOpen(false)}>About</Link>
-          <Link href="#" onClick={() => setIsOpen(false)}>Case Studies</Link>
+          {/* <Link href="#" onClick={() => setIsOpen(false)}>Case Studies</Link> */}
           <Link href="/contact/" onClick={() => setIsOpen(false)}>Contact</Link>
 
         </div>

@@ -61,7 +61,7 @@ export default function ContactForm() {
                     </label>
                     <input
                         {...register("name", { required: "Name is required" })}
-                        placeholder="John Deo"
+                        placeholder="Your Full Name"
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none"
                     />
                     {errors.name && (
@@ -84,7 +84,7 @@ export default function ContactForm() {
                                 message: "Invalid email",
                             },
                         })}
-                        placeholder="john.deo@example.com"
+                        placeholder="Your Email Address"
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none"
                     />
                     {errors.email && (
@@ -93,24 +93,49 @@ export default function ContactForm() {
                         </p>
                     )}
                 </div>
-
-                {/* Subject */}
+                {/* Phone Number */}
                 <div>
                     <label className="block text-sm text-gray-600 mb-2">
-                        Subject
+                        Phone Number
                     </label>
                     <input
-                        {...register("subject", { required: "Subject required" })}
-                        placeholder="SEO Support"
+                        {...register("phone", {
+                            required: "Phone number is required",
+                            pattern: {
+                                value: /^[0-9+\-\s()]{7,15}$/,
+                                message: "Invalid phone number",
+                            },
+                        })}
+                        placeholder="Your Phone Number"
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none"
                     />
-                    {errors.subject && (
+                    {errors.phone && (
                         <p className="text-red-500 text-xs mt-1">
-                            {errors.subject.message}
+                            {errors.phone.message}
                         </p>
                     )}
                 </div>
+                {/* Interested In Dropdown */}
+                <div>
+                    <label className="block text-sm text-gray-600 mb-2">
+                        I am Interested In
+                    </label>
+                    <select
+                        {...register("interest", { required: "Please select an option" })}
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none bg-white"
+                    >
+                        <option value="">Select an option</option>
+                        <option value="Solutions">Solutions</option>
+                        <option value="Academy">Academy</option>
+                        <option value="Corporate Training">Corporate Training</option>
+                    </select>
 
+                    {errors.interest && (
+                        <p className="text-red-500 text-xs mt-1">
+                            {errors.interest.message}
+                        </p>
+                    )}
+                </div>
                 {/* Message */}
                 <div>
                     <label className="block text-sm text-gray-600 mb-2">
@@ -118,7 +143,7 @@ export default function ContactForm() {
                     </label>
                     <input
                         {...register("message", { required: "Message required" })}
-                        placeholder="Get expert SEO support to enhance your website's visibility and drive traffic!"
+                        placeholder="Tell us what you are looking for"
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none"
                     />
                     {errors.message && (
@@ -135,7 +160,7 @@ export default function ContactForm() {
                         disabled={isSubmitting}
                         className="bg-green-900 text-white px-8 py-3 rounded-full hover:bg-green-800 transition"
                     >
-                      <span>{isSubmitting ? "Sending..." : "Send Message"}</span>  
+                        <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                     </button>
                 </div>
 

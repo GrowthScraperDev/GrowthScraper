@@ -15,7 +15,7 @@ import {
   salaryRanges,
 } from "@/data/careerFormOptions";
 import { X } from "lucide-react";
-export default function CareerForm({ onCloseModal }) {
+export default function CareerForm({ onCloseModal,heading,subheading,successHeading,successSubHeading,btnTxt,fileUrl,download }) {
 
   const [step, setStep] = useState("common");
 
@@ -62,6 +62,26 @@ export default function CareerForm({ onCloseModal }) {
     }
   };
 
+  const handleDownload = (url) => {
+    if (!url) return;
+
+    // Extract filename from URL
+    const fileName = url.split("/").pop();
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName || "download.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  const handleClick = () => {
+    if (download && fileUrl) {
+      handleDownload(fileUrl);
+    }
+
+    onCloseModal?.();
+  };
   return (
     <div className="w-full flex justify-center">
 
@@ -86,8 +106,8 @@ export default function CareerForm({ onCloseModal }) {
           <form onSubmit={handleSubmit(validateCommon)} className="space-y-4 lg:space-y-5">
 
             <Header
-              title="Lets Get to Know You"
-              subtitle="Start by sharing a few basic details so we can guide you better."
+              title={heading ? heading : "Lets Get to Know You"}
+              subtitle={subheading ? subheading :"Start by sharing a few basic details so we can guide you better."}
               onCloseModal={onCloseModal}
             />
 
@@ -396,20 +416,20 @@ export default function CareerForm({ onCloseModal }) {
             </div>
 
             <h2 className="text-2xl font-medium text-[#0C0C0C]">
-              Successfully Submitted
+              {successHeading ? successHeading : "Successfully Submitted"}
             </h2>
 
             <p className="text-gray-500 mt-2 mb-6">
-              Our executive will reach out to you.
+              {successSubHeading ? successSubHeading : "Our executive will reach out to you."}
             </p>
 
             <button
-              onClick={() => onCloseModal?.()}
+              onClick={handleClick}
               // onClick={() => setStep("common")}
               className="primaryBtn"
             >
               <span>
-                Back to Home
+               {btnTxt ? btnTxt: "Back to Home"}
               </span>
 
             </button>

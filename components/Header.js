@@ -57,7 +57,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">SEO Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                          Improve your website visibility
+                        Dominate search and drive traffic.
                         </p>
                       </div>
                     </Link>
@@ -69,7 +69,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">AI Website Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                          Automate without coding
+                        Build websites without coding.
                         </p>
                       </div>
                     </Link>
@@ -81,7 +81,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">UI / UX Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                          Better user experience
+                        Design products people love.
                         </p>
                       </div>
                     </Link>

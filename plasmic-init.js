@@ -60,7 +60,14 @@ PLASMIC.registerComponent(CareerForm, {
     onCloseModal: {
       type: "eventHandler",
       argTypes: []
-    }
+    },
+    heading:'string',
+    subheading:'string',
+    successHeading:'string',
+    successSubHeading:'string',
+    btnTxt:'string',
+    fileUrl:'string',
+    download:'boolean'
   }
 });
 PLASMIC.registerComponent(ContactForm, {

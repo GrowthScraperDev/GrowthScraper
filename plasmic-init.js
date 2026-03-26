@@ -4,6 +4,7 @@ import ScrollerComp from "./components/ScrollerComp";
 import Header from "./components/Header";
 import CareerForm from "./components/CareerForm";
 import ContactForm from "./components/ContactForm";
+import ContactFormPopup from "./components/ContactFormPopup";
 
 export const PLASMIC = initPlasmicLoader({
   projects: [
@@ -73,6 +74,18 @@ PLASMIC.registerComponent(CareerForm, {
 PLASMIC.registerComponent(ContactForm, {
   name: 'ContactForm',
   props: {
+  }
+});
+PLASMIC.registerComponent(ContactFormPopup, {
+  name: 'ContactFormPopup',
+  props: {
+    onCloseModal: {
+      type: "eventHandler",
+      argTypes: []
+    },
+    popup:'boolean',
+    title:"string",
+    subtitle:"string"
   }
 });
 

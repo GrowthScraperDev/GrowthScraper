@@ -23,7 +23,7 @@ export default function Header() {
       </Head>
 
       <header className="w-full px-[20px] sm:px-[40px] xl:px-[80px]">
-        <div className="w-full">
+        <div className="w-full max-w-[1400px] mx-auto">
 
           {/* ================= DESKTOP ================= */}
           <div className="hidden lg:flex items-center justify-between bg-white rounded-md py-4 relative">
@@ -57,7 +57,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">SEO Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                        Dominate search and drive traffic.
+                        Dominate search and drive traffic
                         </p>
                       </div>
                     </Link>
@@ -69,19 +69,19 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">AI Website Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                        Build websites without coding.
+                        Build websites without coding
                         </p>
                       </div>
                     </Link>
 
-                    <Link href="/academy/ui-ux-mastery-program/" className="flex items-center gap-3">
+                    <Link href="/academy/ui-ux-design-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/ui-ux.svg" width={56} height={56} />
                       </div>
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">UI / UX Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                        Design products people love.
+                        Design products people love
                         </p>
                       </div>
                     </Link>
@@ -168,7 +168,7 @@ export default function Header() {
               <div className="flex flex-col gap-3 pl-2 text-sm text-gray-600">
                 <Link href="/academy/seo-mastery-program/">SEO Mastery</Link>
                 <Link href="/academy/no-code-ai-website-mastery-program/">AI Website Mastery</Link>
-                <Link href="/academy/ui-ux-mastery-program/">UI / UX Mastery</Link>
+                <Link href="/academy/ui-ux-design-mastery-program/">UI / UX Mastery</Link>
               </div>
             </div>
           </div>

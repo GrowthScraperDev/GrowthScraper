@@ -57,7 +57,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">SEO Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                        Dominate search and drive traffic
+                          Dominate search and drive traffic
                         </p>
                       </div>
                     </Link>
@@ -69,7 +69,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">AI Website Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                        Build websites without coding
+                          Build websites without coding
                         </p>
                       </div>
                     </Link>
@@ -81,7 +81,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">UI / UX Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                        Design products people love
+                          Design products people love
                         </p>
                       </div>
                     </Link>
@@ -96,9 +96,11 @@ export default function Header() {
             </nav>
 
             {/* CTA */}
-            <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
-              <span>Lets Collaborate</span>
-            </button>
+            <Link href="/contact/#contact-form">
+              <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
+                <span>Get Started</span>
+              </button>
+            </Link>
           </div>
 
           {/* ================= MOBILE ================= */}
@@ -108,9 +110,11 @@ export default function Header() {
             </Link>
 
             <div className="flex items-center gap-4">
-              <button className="bg-[#084734] px-5 py-2 rounded-full text-sm font-medium">
-                <span>Lets Collaborate</span>
+            <Link href="/contact/#contact-form">
+              <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
+                <span>Get Started</span>
               </button>
+            </Link>
 
               <span onClick={() => setIsOpen(true)}>
                 <Menu className="w-6 h-6 text-gray-700" />

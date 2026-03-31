@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /plasmic-host/
+
+Sitemap: https://www.growthscraper.com/sitemap.xml

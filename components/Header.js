@@ -19,7 +19,28 @@ export default function Header() {
   return (
     <>
       <Head>
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index,follow" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-FMY9467XEV"
+        ></script>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FMY9467XEV');
+          `,
+          }}
+        />
+
+        {/* Google Search Console */}
+        <meta
+          name="google-site-verification"
+          content="M1cvr0nhxShjlhiwpfOhEZKjSIvR_7BK4fN4fvN8GQI"
+        />
       </Head>
 
       <header className="w-full px-[20px] sm:px-[40px] xl:px-[80px]">
@@ -110,11 +131,11 @@ export default function Header() {
             </Link>
 
             <div className="flex items-center gap-4">
-            <Link href="/contact/#contact-form">
-              <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
-                <span>Get Started</span>
-              </button>
-            </Link>
+              <Link href="/contact/#contact-form">
+                <button className="bg-[#084734] px-6 py-3 rounded-full font-medium hover:opacity-90 transition">
+                  <span>Get Started</span>
+                </button>
+              </Link>
 
               <span onClick={() => setIsOpen(true)}>
                 <Menu className="w-6 h-6 text-gray-700" />

@@ -51,7 +51,7 @@ export default function ContactForm() {
 
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="grid md:grid-cols-2 gap-8"
+                className="flex flex-col gap-8"
             >
 
                 {/* Full Name */}

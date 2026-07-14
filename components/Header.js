@@ -95,7 +95,7 @@ export default function Header() {
                       </div>
                     </Link>
 
-                    <Link href="/academy/ui-ux-design-mastery-program/" className="flex items-center gap-3">
+                    {/* <Link href="/academy/ui-ux-design-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/ui-ux.svg" width={56} height={56} />
                       </div>
@@ -105,7 +105,7 @@ export default function Header() {
                           Design products people love
                         </p>
                       </div>
-                    </Link>
+                    </Link> */}
 
                   </div>
                 </div>

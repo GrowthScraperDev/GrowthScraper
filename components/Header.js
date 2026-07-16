@@ -82,7 +82,28 @@ export default function Header() {
                         </p>
                       </div>
                     </Link>
-
+                    <Link href="/academy/performance-marketing-mastery-program/" className="flex items-center gap-3">
+                      <div>
+                        <Image src="/performance-marketing-mastery.svg" width={56} height={56} />
+                      </div>
+                      <div>
+                        <p className="text-[16px] leading-[20px] text-black">Performance Marketing Mastery</p>
+                        <p className="text-[14px] leading-[18px] text-[#595959]">
+                        Scale budgets and drive real results
+                        </p>
+                      </div>
+                    </Link>
+                    <Link href="/academy/no-code-ecommerce-mastery-program/" className="flex items-center gap-3">
+                      <div>
+                        <Image src="/no-code-ecommerce-mastery.svg" width={56} height={56} />
+                      </div>
+                      <div>
+                        <p className="text-[16px] leading-[20px] text-black">No-Code Ecommerce Mastery</p>
+                        <p className="text-[14px] leading-[18px] text-[#595959]">
+                        Build a store without Shopify or code
+                        </p>
+                      </div>
+                    </Link>
                     <Link href="/academy/no-code-ai-website-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/no-code-ai.svg" width={56} height={56} />
@@ -94,7 +115,7 @@ export default function Header() {
                         </p>
                       </div>
                     </Link>
-
+                   
                     {/* <Link href="/academy/ui-ux-design-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/ui-ux.svg" width={56} height={56} />
@@ -192,8 +213,10 @@ export default function Header() {
             >
               <div className="flex flex-col gap-3 pl-2 text-sm text-gray-600">
                 <Link href="/academy/seo-mastery-program/">SEO Mastery</Link>
+                <Link href="/academy/performance-marketing-mastery-program/">Performance Marketing Mastery</Link>
+                <Link href="/academy/no-code-ecommerce-mastery-program/">No-Code Ecommerce Mastery</Link>
                 <Link href="/academy/no-code-ai-website-mastery-program/">AI Website Mastery</Link>
-                <Link href="/academy/ui-ux-design-mastery-program/">UI / UX Mastery</Link>
+                {/* <Link href="/academy/ui-ux-design-mastery-program/">UI / UX Mastery</Link> */}
               </div>
             </div>
           </div>

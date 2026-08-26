@@ -93,7 +93,7 @@ export default function Header() {
                         </p>
                       </div>
                     </Link>
-                    <Link href="/academy/no-code-ecommerce-mastery-program/" className="flex items-center gap-3">
+                    {/* <Link href="/academy/no-code-ecommerce-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/no-code-ecommerce-mastery.svg" width={56} height={56} />
                       </div>
@@ -103,7 +103,7 @@ export default function Header() {
                         Build a store without Shopify or code
                         </p>
                       </div>
-                    </Link>
+                    </Link> */}
                     <Link href="/academy/no-code-ai-website-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/no-code-ai.svg" width={56} height={56} />
@@ -214,7 +214,7 @@ export default function Header() {
               <div className="flex flex-col gap-3 pl-2 text-sm text-gray-600">
                 <Link href="/academy/seo-mastery-program/">SEO Mastery</Link>
                 <Link href="/academy/performance-marketing-mastery-program/">Performance Marketing Mastery</Link>
-                <Link href="/academy/no-code-ecommerce-mastery-program/">No-Code Ecommerce Mastery</Link>
+                {/* <Link href="/academy/no-code-ecommerce-mastery-program/">No-Code Ecommerce Mastery</Link> */}
                 <Link href="/academy/no-code-ai-website-mastery-program/">AI Website Mastery</Link>
                 {/* <Link href="/academy/ui-ux-design-mastery-program/">UI / UX Mastery</Link> */}
               </div>

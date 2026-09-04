@@ -71,7 +71,7 @@ export default function Header() {
 
                   <div className="flex flex-col gap-5">
 
-                    <Link href="/academy/seo-mastery-program/" className="flex items-center gap-3">
+                    {/* <Link href="/academy/seo-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/seo-search-engine.svg" width={56} height={56} />
                       </div>
@@ -81,7 +81,7 @@ export default function Header() {
                           Dominate search and drive traffic
                         </p>
                       </div>
-                    </Link>
+                    </Link> */}
                     <Link href="/academy/performance-marketing-mastery-program/" className="flex items-center gap-3">
                       <div>
                         <Image src="/performance-marketing-mastery.svg" width={56} height={56} />
@@ -212,7 +212,7 @@ export default function Header() {
                 }`}
             >
               <div className="flex flex-col gap-3 pl-2 text-sm text-gray-600">
-                <Link href="/academy/seo-mastery-program/">SEO Mastery</Link>
+                {/* <Link href="/academy/seo-mastery-program/">SEO Mastery</Link> */}
                 <Link href="/academy/performance-marketing-mastery-program/">AI Performance Marketing</Link>
                 {/* <Link href="/academy/no-code-ecommerce-mastery-program/">No-Code Ecommerce Mastery</Link> */}
                 <Link href="/academy/ai-web-development-mastery-program/">AI Web Development Mastery</Link>

@@ -3,16 +3,9 @@
 import { useState } from "react";
 import { useForm as useHookForm } from "react-hook-form";
 import {
-  qualificationOptions,
-  graduationYears,
-  careerBreakGraduationYears,
-  studyYears,
-  studentGoals,
-  graduateGoals,
-  workingGoals,
-  careerBreakGoals,
-  investmentOptions,
-  salaryRanges,
+  mainGoals,
+  startTimelines,
+  investmentReadiness,
 } from "@/data/careerFormOptions";
 import { X } from "lucide-react";
 export default function CareerForm({ onCloseModal,heading,subheading,successHeading,successSubHeading,btnTxt,fileUrl,download }) {
@@ -23,21 +16,17 @@ export default function CareerForm({ onCloseModal,heading,subheading,successHead
     register,
     handleSubmit,
     trigger,
-    getValues,
     formState: { errors, isSubmitting },
   } = useHookForm();
 
   /* ---------- STEP VALIDATION ---------- */
 
-  const validateCommon = async (data) => {
+  const validateCommon = async () => {
     const valid = await trigger(["name", "email", "phone", "profile"]);
 
     if (!valid) return;
 
-    if (data.profile === "Student") setStep("student");
-    if (data.profile === "Graduate") setStep("graduate");
-    if (data.profile === "Working Professional") setStep("working");
-    if (data.profile === "Career Break") setStep("careerBreak");
+    setStep("goals");
   };
   const scriptURL =
     "https://script.google.com/macros/s/AKfycbyGkR3Q8v9jiSB2QG1byYGdDohd_utTvZzbuMRcSOUt7d9EHdj_jzWSRxLMgBDMFQJPEw/exec";
@@ -100,14 +89,14 @@ export default function CareerForm({ onCloseModal,heading,subheading,successHead
         }
       >
 
-        {/* ---------------- COMMON STEP ---------------- */}
+        {/* ---------------- FLOW 1: GET TO KNOW YOU ---------------- */}
 
         {step === "common" && (
           <form onSubmit={handleSubmit(validateCommon)} className="space-y-4 lg:space-y-5">
 
             <Header
-              title={heading ? heading : "Lets Get to Know You"}
-              subtitle={subheading ? subheading :"Start by sharing a few basic details so we can guide you better."}
+              title={heading ? heading : "Let's Get to Know You"}
+              subtitle={subheading ? subheading : "Tell us a little about yourself so we can guide you better."}
               onCloseModal={onCloseModal}
             />
 
@@ -150,55 +139,33 @@ export default function CareerForm({ onCloseModal,heading,subheading,successHead
                 className="input"
               >
                 <option value="">Select</option>
-                <option>Student</option>
-                <option>Graduate</option>
+                <option>Student / Graduate</option>
                 <option>Working Professional</option>
                 <option>Career Break</option>
+                <option>Business Owner</option>
               </select>
             </Field>
 
-            <button className="primaryBtn"><span>Continue</span></button>
+            <button className="primaryBtn"><span>Continue &rarr;</span></button>
 
           </form>
         )}
 
-        {/* ---------------- STUDENT ---------------- */}
+        {/* ---------------- FLOW 2: WHAT YOU'RE LOOKING FOR ---------------- */}
 
-        {step === "student" && (
+        {step === "goals" && (
           <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
 
             <Header
-              title="Your Career Starts Here"
-              subtitle="Your first smart step toward a strong career."
+              title="Tell Us What You're Looking For"
+              subtitle="Help us understand your goals and how soon you'd like to get started."
               onCloseModal={onCloseModal}
             />
-
-            <Field label="Which degree are you pursuing?" error={errors.degree}>
-              <select {...register("degree", { required: "Degree required" })} className="input">
-                <option value="">Select</option>
-                {qualificationOptions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Current year of study" error={errors.studyYear}>
-              <select {...register("studyYear", { required: "Year required" })} className="input">
-                <option value="">Select</option>
-                {studyYears.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
 
             <Field label="What is your main goal?" error={errors.goal}>
               <select {...register("goal", { required: "Goal required" })} className="input">
                 <option value="">Select</option>
-                {studentGoals.map((item) => (
+                {mainGoals.map((item) => (
                   <option key={item} value={item}>
                     {item}
                   </option>
@@ -206,10 +173,21 @@ export default function CareerForm({ onCloseModal,heading,subheading,successHead
               </select>
             </Field>
 
-            <Field label="Are you ready to invest?" error={errors.invest}>
+            <Field label="When are you planning to start?" error={errors.timeline}>
+              <select {...register("timeline", { required: "Timeline required" })} className="input">
+                <option value="">Select</option>
+                {startTimelines.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </Field>
+
+            <Field label="Are you comfortable investing in the program?" error={errors.invest}>
               <select {...register("invest", { required: "Selection required" })} className="input">
                 <option value="">Select</option>
-                {investmentOptions.map((item) => (
+                {investmentReadiness.map((item) => (
                   <option key={item} value={item}>
                     {item}
                   </option>
@@ -217,187 +195,7 @@ export default function CareerForm({ onCloseModal,heading,subheading,successHead
               </select>
             </Field>
 
-            <FormButtons back={() => setStep("common")}   isSubmitting={isSubmitting}/>
-
-          </form>
-        )}
-
-        {/* ---------------- GRADUATE ---------------- */}
-
-        {step === "graduate" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
-
-            <Header
-              title="Time to Build Your Career"
-              subtitle="Your degree is ready, lets build your career next."
-              onCloseModal={onCloseModal}
-            />
-
-            <Field label="Highest Qualification" error={errors.qualification}>
-              <select {...register("qualification")} className="input">
-                <option value="">Select</option>
-
-                {qualificationOptions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-
-              </select>
-            </Field>
-
-            <Field label="Year of Graduation" error={errors.graduationYear}>
-              <select {...register("graduationYear", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {graduationYears.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Main Goal" error={errors.goal}>
-              <select {...register("goal", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {graduateGoals.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Ready to invest?" error={errors.invest}>
-              <select {...register("invest", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {investmentOptions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <FormButtons back={() => setStep("common")}   isSubmitting={isSubmitting} />
-
-          </form>
-        )}
-
-        {/* ---------------- WORKING ---------------- */}
-
-        {step === "working" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
-
-            <Header
-              title="Plan Your Next Move"
-              subtitle="Your next career leap starts with the right skills."
-              onCloseModal={onCloseModal}
-            />
-
-            <Field label="Current Role" error={errors.role}>
-              <input
-                {...register("role", { required: "Role required" })}
-                className="input"
-              />
-            </Field>
-
-            <Field label="Salary Range" error={errors.salary}>
-              <select {...register("salary", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {salaryRanges.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Main Goal" error={errors.goal}>
-              <select {...register("goal", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {workingGoals.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Ready to invest?" error={errors.invest}>
-              <select {...register("invest", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {investmentOptions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <FormButtons back={() => setStep("common")}   isSubmitting={isSubmitting}/>
-
-          </form>
-        )}
-
-        {/* ---------------- CAREER BREAK ---------------- */}
-
-        {step === "careerBreak" && (
-          <form onSubmit={handleSubmit(submitHandler)} className="space-y-4 lg:space-y-5">
-
-            <Header
-              title="Restart with Confidence"
-              subtitle="Your break was a pause, not a full stop."
-              onCloseModal={onCloseModal}
-            />
-
-            <Field label="Highest Qualification" error={errors.qualification}>
-              <select {...register("qualification", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {qualificationOptions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="When did you graduate?" error={errors.graduationYear}>
-              <select {...register("graduationYear", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {careerBreakGraduationYears.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Main Goal" error={errors.goal}>
-              <select {...register("goal", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {careerBreakGoals.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <Field label="Ready to invest?" error={errors.invest}>
-              <select {...register("invest", { required: "Required" })} className="input">
-                <option value="">Select</option>
-                {investmentOptions.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <FormButtons
-              back={() => setStep("common")}   isSubmitting={isSubmitting}
-            />
+            <FormButtons back={() => setStep("common")} isSubmitting={isSubmitting} />
 
           </form>
         )}

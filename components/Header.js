@@ -78,7 +78,7 @@ export default function Header() {
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">Full Stack SEO Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                          Dominate search and drive traffic
+                        Build websites that rank on Google
                         </p>
                       </div>
                     </Link>
@@ -117,12 +117,12 @@ export default function Header() {
                     </Link>
                     <Link href="/academy/small-business-marketing-mastery-program/" className="flex items-center gap-3">
                       <div>
-                        <Image src="/small-business-marketing-mastery.svg" width={56} height={56} />
+                        <Image src="/SmallBusinessMarketingMastery.svg" width={56} height={56} />
                       </div>
                       <div>
                         <p className="text-[16px] leading-[20px] text-black">Small Business Marketing Mastery</p>
                         <p className="text-[14px] leading-[18px] text-[#595959]">
-                          Grow your local business with proven marketing
+Grow your business on your own
                         </p>
                       </div>
                     </Link>

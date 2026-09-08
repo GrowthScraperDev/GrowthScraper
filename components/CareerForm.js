@@ -8,7 +8,7 @@ import {
   investmentReadiness,
 } from "@/data/careerFormOptions";
 import { X } from "lucide-react";
-export default function CareerForm({ onCloseModal,heading,subheading,successHeading,successSubHeading,btnTxt,fileUrl,download }) {
+export default function CareerForm({ onCloseModal,successHeading,successSubHeading,btnTxt,fileUrl,download }) {
 
   const [step, setStep] = useState("common");
 
@@ -95,8 +95,8 @@ export default function CareerForm({ onCloseModal,heading,subheading,successHead
           <form onSubmit={handleSubmit(validateCommon)} className="space-y-4 lg:space-y-5">
 
             <Header
-              title={heading ? heading : "Let's Get to Know You"}
-              subtitle={subheading ? subheading : "Tell us a little about yourself so we can guide you better."}
+              title="Let's Get to Know You"
+              subtitle="Tell us a little about yourself so we can guide you better."
               onCloseModal={onCloseModal}
             />
 

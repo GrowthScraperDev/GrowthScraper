@@ -7,8 +7,9 @@ import {
   startTimelines,
   investmentReadiness,
 } from "@/data/careerFormOptions";
+import { crmWebhookURL, getCampaignName } from "@/data/crmWebhook";
 import { X } from "lucide-react";
-export default function CareerForm({ onCloseModal,successHeading,successSubHeading,btnTxt,fileUrl,download }) {
+export default function CareerForm({ onCloseModal,successHeading,successSubHeading,btnTxt,fileUrl,download,campaignName }) {
 
   const [step, setStep] = useState("common");
 
@@ -39,11 +40,37 @@ export default function CareerForm({ onCloseModal,successHeading,successSubHeadi
         formData.append(key, data[key]);
       });
       formData.append("sheetName", "Enrollment")
-      await fetch(scriptURL, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
+
+      const crmPayload = {
+        mobile: data.phone,
+        campaign_name: campaignName || getCampaignName(window.location.pathname),
+        paid_course: data.invest,
+        profile: data.profile,
+        email: data.email,
+        joining: data.timeline,
+        contact_name: data.name,
+        reason: data.goal,
+      };
+
+      // Send to Google Sheets and the CRM together; one failing shouldn't block the other
+      const results = await Promise.allSettled([
+        fetch(scriptURL, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors",
+        }),
+        fetch(crmWebhookURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(crmPayload),
+        }).then((res) => {
+          if (!res.ok) throw new Error(`CRM webhook responded ${res.status}`);
+        }),
+      ]);
+
+      results
+        .filter((r) => r.status === "rejected")
+        .forEach((r) => console.error("Submission error:", r.reason));
 
       setStep("success");
     } catch (error) {

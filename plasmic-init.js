@@ -68,7 +68,8 @@ PLASMIC.registerComponent(CareerForm, {
     successSubHeading:'string',
     btnTxt:'string',
     fileUrl:'string',
-    download:'boolean'
+    download:'boolean',
+    campaignName:'string'
   }
 });
 PLASMIC.registerComponent(ContactForm, {

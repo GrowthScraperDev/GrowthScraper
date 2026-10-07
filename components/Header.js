@@ -56,7 +56,7 @@ export default function Header() {
 
             {/* Nav */}
             <nav className="flex items-center gap-10 text-gray-600 font-medium">
-              {/* <Link href="/solutions/">Solutions</Link> */}
+              <Link href="/solutions/">Solutions</Link>
 
               {/* SOLUTIONS DROPDOWN */}
               <div className="relative group">
@@ -201,7 +201,7 @@ Grow your business on your own
 
         {/* Links */}
         <div className="px-6 flex flex-col gap-5 text-gray-700 font-medium">
-          {/* <Link href="/solutions/" onClick={() => setIsOpen(false)}>Solutions</Link> */}
+          <Link href="/solutions/" onClick={() => setIsOpen(false)}>Solutions</Link>
 
           {/* MOBILE DROPDOWN */}
           <div>
